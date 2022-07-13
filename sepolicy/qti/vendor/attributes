@@ -10,3 +10,7 @@ vendor_hal_attribute(oplus_touchdaemon)
 attribute hal_cryptoeng;
 attribute hal_cryptoeng_client;
 attribute hal_cryptoeng_server;
+
+attribute hal_dms;
+attribute hal_dms_client;
+attribute hal_dms_server;
