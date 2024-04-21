@@ -20,7 +20,7 @@
 #include <android/binder_interface_utils.h>
 #include <android/binder_manager.h>
 #include <android/binder_process.h>
-#include <hardware/consumerir.h>
+#include "hardware/consumerir.h"
 #include <numeric>
 
 #include <log/log.h>
