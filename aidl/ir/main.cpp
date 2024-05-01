@@ -20,10 +20,12 @@
 #include <android/binder_interface_utils.h>
 #include <android/binder_manager.h>
 #include <android/binder_process.h>
-#include "hardware/consumerir.h"
+#include "consumerir.h"
 #include <numeric>
 
 #include <log/log.h>
+
+#include <oplus/oplus_ir_core.h>
 
 using ::aidl::android::hardware::ir::ConsumerIrFreqRange;
 
@@ -37,9 +39,12 @@ class ConsumerIr : public BnConsumerIr {
     ::ndk::ScopedAStatus transmit(int32_t in_carrierFreqHz,
                                   const std::vector<int32_t>& in_pattern) override;
     consumerir_device_t *mDevice = nullptr;
+
+    int mOplusConsumerIrFd;
 };
 
-ConsumerIr::ConsumerIr() {
+ConsumerIr::ConsumerIr()
+    : mOplusConsumerIrFd(open("/dev/oplus_consumer_ir", O_WRONLY)) {
     const hw_module_t *hw_module = NULL;
 
     int ret = hw_get_module(CONSUMERIR_HARDWARE_MODULE_ID, &hw_module);
@@ -65,6 +70,7 @@ ConsumerIr::ConsumerIr() {
 
     consumerir_freq_range_t *rangeAr = new consumerir_freq_range_t[len];
     bool success = (mDevice->get_carrier_freqs(mDevice, len, rangeAr) >= 0);
+    ioctl(mOplusConsumerIrFd, _IOC(_IOC_NONE, IR_IOCTL_GROUP, 0x2, 0));
     if (!success) {
         (*_aidl_return).clear();
         return ::ndk::ScopedAStatus::ok();
@@ -81,6 +87,8 @@ ConsumerIr::ConsumerIr() {
 ::ndk::ScopedAStatus ConsumerIr::transmit(int32_t in_carrierFreqHz,
                                           const std::vector<int32_t>& in_pattern) {
     if (in_carrierFreqHz > 0) {
+        ALOGE("Whatever the fuck");
+        ioctl(mOplusConsumerIrFd, _IOC(_IOC_NONE, IR_IOCTL_GROUP, 0x2, 0));
         mDevice->transmit(mDevice, in_carrierFreqHz, in_pattern.data(), in_pattern.size());
         return ::ndk::ScopedAStatus::ok();
     } else {
