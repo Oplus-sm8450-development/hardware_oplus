@@ -17,6 +17,8 @@ allow platform_app vendor_persist_camera_file:dir search;
 
 allow platform_app selinuxfs:file r_file_perms;
 
+allow platform_app vendor_data_file:dir getattr;
+
 allow platform_app vendor_camera_update_data_file:dir rw_dir_perms;
 allow platform_app vendor_camera_update_data_file:file create_file_perms;
 
