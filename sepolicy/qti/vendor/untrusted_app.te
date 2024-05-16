@@ -1,5 +1,6 @@
 dontaudit untrusted_app_29 app_data_file:file execute;
 dontaudit untrusted_app_29 mnt_sdcard_file:lnk_file read;
+dontaudit untrusted_app_29 selinuxfs:file read;
 
 allow {
   untrusted_app
@@ -9,15 +10,22 @@ allow {
   untrusted_app_30
 } { window_service oem_service }:service_manager find;
 
-allow untrusted_app_27 shell_test_data_file:dir search;
+allow untrusted_app_all shell_test_data_file:dir search;
 
 allow untrusted_app_29 app_data_file:file execute;
 
 allow untrusted_app_32 debugfs_trace_marker:file getattr;
+allow untrusted_app_32 debugfs_tracing_debug:dir read;
 allow untrusted_app_32 cgroup_desc_file:file getattr;
 allow untrusted_app_32 media_rw_data_file:file { relabelfrom relabelto};
 allow untrusted_app_32 proc_net:file read;
 allow untrusted_app_32 pmsg_device:file getattr;
+allow untrusted_app_32 vendor_sysfs_battery_supply:dir search;
+allow untrusted_app_32 vendor_sysfs_kgsl:file read;
+allow untrusted_app_32 vendor_sysfs_kgsl_gpuclk:file read;
+allow untrusted_app_32 vendor_sysfs_devfreq:dir search;
+allow untrusted_app_32 block_device:dir search;
+allow untrusted_app_32 wifi_hal_prop:file read;
 
 allow untrusted_app_32 {
   proc_pid_max
