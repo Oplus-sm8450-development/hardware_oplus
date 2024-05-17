@@ -10,6 +10,10 @@ allow {
   untrusted_app_30
 } { window_service oem_service }:service_manager find;
 
+allow untrusted_app proc_max_map_count:file read;
+
+allow untrusted_app_all qemu_sf_lcd_density_prop:file read;
+allow untrusted_app_all qemu_hw_prop:file read;
 allow untrusted_app_all shell_test_data_file:dir search;
 
 allow untrusted_app_29 app_data_file:file execute;
