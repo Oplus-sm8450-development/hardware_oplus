@@ -13,3 +13,5 @@ rw_dir_file(system_server, vndbinder_device)
 allow system_server audioserver_tmpfs:file write;
 
 allow system_server app_zygote_tmpfs:file write;
+
+allow system_server self:capability sys_module;
