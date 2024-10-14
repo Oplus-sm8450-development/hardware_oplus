@@ -1,3 +1,7 @@
+# Audio
+ro.vendor.oplus.audiodriver.operator    u:object_r:vendor_audio_debug_prop:s0
+ro.vendor.oplus.regionmark              u:object_r:vendor_audio_debug_prop:s0
+
 # Aware
 ro.vendor.aware_available          u:object_r:vendor_aware_available_prop:s0
 
