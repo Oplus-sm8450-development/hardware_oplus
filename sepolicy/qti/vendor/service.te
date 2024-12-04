@@ -1,6 +1,9 @@
 # Camera
 type hal_oplus_cammidasservice_aidl_service, hal_service_type, service_manager_type;
 
+# Cwb
+type hal_oplus_cwb_service, hal_service_type, service_manager_type;
+
 # Iris
 type hal_pixelworks_iris_service, hal_service_type, service_manager_type;
 
