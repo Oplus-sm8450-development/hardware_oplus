@@ -1,0 +1,1 @@
+allow vendor_hal_imsrtp init:unix_stream_socket connectto;
