@@ -1,3 +1,5 @@
+allow servicemanager mediacodec:binder call;
+
 set_prop(mediacodec, vendor_video_prop)
 
 get_prop(mediacodec, graphics_config_prop)
