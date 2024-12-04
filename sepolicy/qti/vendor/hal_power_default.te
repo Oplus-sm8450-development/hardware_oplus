@@ -1,6 +1,7 @@
 allow hal_power_default proc:file { open write };
 allow hal_power_default property_socket:sock_file write;
 allow hal_power_default vendor_latency_device:chr_file rw_file_perms;
+allow hal_power_default proc_libperfmgr_adds:file { read write open getattr };
 
 rw_dir_file(hal_power_default, vendor_proc_display)
 rw_dir_file(hal_power_default, vendor_sysfs_sde_crtc)
