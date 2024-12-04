@@ -16,6 +16,9 @@ vendor.oplus.hardware.osense.client.IOsenseAidlHalReporter/default    u:object_r
 # Performance
 vendor.oplus.hardware.performance.IPerformance/default    u:object_r:hal_oplus_performance_aidl_service:s0
 
+# Pixelworks
+vendor.pixelworks.hardware.display.IIris/default          u:object_r:hal_pixelworks_iris_service:s0
+
 # Project
 vendor.oplus.hardware.stability.oplus_project.IOplusProject/default    u:object_r:hal_oplus_project_aidl_service:s0
 
