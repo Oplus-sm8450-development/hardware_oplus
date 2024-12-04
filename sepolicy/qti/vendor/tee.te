@@ -1,3 +1,8 @@
 rw_dir_file(tee, vendor_persist_fingerprint_file)
 allow tee vendor_persist_fingerprint_file:dir { write remove_name add_name };
 allow tee vendor_persist_fingerprint_file:file { create unlink };
+
+# Qseecomd
+allow tee vendor_gpt_block_device:blk_file read;
+allow tee vendor_xbl_block_device:blk_file read;
+allow tee boot_block_device:blk_file read;
