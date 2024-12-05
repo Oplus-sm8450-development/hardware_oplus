@@ -46,6 +46,7 @@ genfscon proc /oplus_scheduler    u:object_r:vendor_proc_oplus_scheduler:s0
 genfscon sysfs /devices/system/cpu/cpufreq/policy0/walt    u:object_r:sysfs_devices_system_cpu:s0
 genfscon sysfs /devices/system/cpu/cpufreq/policy4/walt    u:object_r:sysfs_devices_system_cpu:s0
 genfscon sysfs /devices/system/cpu/cpufreq/policy7/walt    u:object_r:sysfs_devices_system_cpu:s0
+genfscon proc /task_info/task_sched_info/tids_set    u:object_r:vendor_proc_oplus_scheduler:s0
 
 # Sensors
 genfscon proc /sensor/als_cali                        u:object_r:vendor_proc_oplus_als_file:s0
