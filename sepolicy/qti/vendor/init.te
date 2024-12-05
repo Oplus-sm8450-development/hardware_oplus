@@ -3,6 +3,8 @@ allow init vendor_sysfs_usb_supply:file w_file_perms;
 allow init self:netlink_kobject_uevent_socket read;
 allow init self:qipcrtr_socket { read write connect getattr };
 
+allow init self:capability ipc_lock;
+
 allow init vendor_mhi_diag_device:chr_file { read write open };
 
 allow init same_process_hal_file:file execute;
