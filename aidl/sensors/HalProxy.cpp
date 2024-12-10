@@ -705,12 +705,6 @@ void HalProxy::postEventsToMessageQueue(const std::vector<Event>& events, size_t
     if (wakelock.isLocked()) {
         incrementRefCountAndMaybeAcquireWakelock(numWakeupEvents);
     }
-    std::vector<Event> events(eventsList);
-    for (auto& event : events) {
-        if (static_cast<int>(event.sensorType) == SENSOR_TYPE_QTI_WISE_LIGHT) {
-            AlsCorrection::process(event);
-        }
-    }
     if (mPendingWriteEventsQueue.empty()) {
         numToWrite = std::min(events.size(), mEventQueue->availableToWrite());
         if (numToWrite > 0) {
