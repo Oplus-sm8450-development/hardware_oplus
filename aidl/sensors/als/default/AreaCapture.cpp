@@ -15,12 +15,12 @@
 using android::DisplayCaptureArgs;
 using android::GraphicBuffer;
 using android::IBinder;
-using android::Rect;
 using android::ScreenshotClient;
 using android::sp;
 using android::SurfaceComposerClient;
 using android::SyncScreenCaptureListener;
 using android::base::GetProperty;
+using android::gui::ARect;
 using android::gui::ScreenCaptureResults;
 using android::ui::PixelFormat;
 
@@ -40,7 +40,10 @@ AreaCapture::AreaCapture() {
     }
 
     ALOGI("Screenshot grab area: %d %d %d %d", left, top, right, bottom);
-    m_screenshot_rect = Rect(left, top, right, bottom);
+    m_screenshot_rect.left = left;
+    m_screenshot_rect.top = top;
+    m_screenshot_rect.right = right;
+    m_screenshot_rect.bottom = bottom;
 }
 
 // See frameworks/base/services/core/jni/com_android_server_display_DisplayControl.cpp and
@@ -53,11 +56,11 @@ sp<IBinder> AreaCapture::getInternalDisplayToken() {
 ndk::ScopedAStatus AreaCapture::getAreaBrightness(AreaRgbCaptureResult* _aidl_return) {
     DisplayCaptureArgs captureArgs;
     captureArgs.displayToken = getInternalDisplayToken();
-    captureArgs.pixelFormat = PixelFormat::RGBA_8888;
-    captureArgs.sourceCrop = m_screenshot_rect;
-    captureArgs.width = m_screenshot_rect.getWidth();
-    captureArgs.height = m_screenshot_rect.getHeight();
-    captureArgs.captureSecureLayers = true;
+    captureArgs.captureArgs.pixelFormat = static_cast<int>(::android::PIXEL_FORMAT_RGBA_8888);
+    captureArgs.captureArgs.sourceCrop = m_screenshot_rect;
+    captureArgs.width = m_screenshot_rect.right - m_screenshot_rect.left;
+    captureArgs.height = m_screenshot_rect.bottom - m_screenshot_rect.top;
+    captureArgs.captureArgs.captureSecureLayers = true;
 
     sp<SyncScreenCaptureListener> captureListener = new SyncScreenCaptureListener();
     if (ScreenshotClient::captureDisplay(captureArgs, captureListener) != ::android::NO_ERROR) {
