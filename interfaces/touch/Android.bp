@@ -4,7 +4,6 @@ aidl_interface {
     srcs: [
         "vendor/oplus/hardware/touch/*.aidl",
     ],
-    frozen: true,
     stability: "vintf",
     owner: "oplus",
     backend: {
