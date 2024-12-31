@@ -147,6 +147,9 @@
 /dev/audio_ultrasound     u:object_r:ultrasound_device:s0
 /dev/sensor_ultrasound    u:object_r:ultrasound_device:s0
 
+# URCC
+/(odm|vendor/odm)/bin/hw/vendor\.oplus\.hardware\.urcc-service               u:object_r:hal_urcc_exec:s0
+
 # USB fast charge
 /sys/module/oplus_chg/parameters/force_fast_charge      u:object_r:vendor_sysfs_fastcharge:s0
 /sys/module/oplus_chg/parameters/ffc_val                u:object_r:vendor_sysfs_fastcharge:s0
